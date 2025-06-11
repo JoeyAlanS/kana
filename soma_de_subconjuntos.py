@@ -18,6 +18,9 @@ def subset(lista):
         print("nenhum subconjunto soma zero.")
 
 # input
-entrada = input("")
-numeros = list(map(int, entrada.split()))
-subset(numeros)
+entrada = input("Digite os números separados por espaço: ").strip()
+if entrada:
+    numeros = list(map(int, entrada.split()))
+    subset(numeros)
+else:
+    print("Nenhum número informado.")
