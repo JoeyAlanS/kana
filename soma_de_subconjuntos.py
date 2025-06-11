@@ -2,7 +2,7 @@ def subset(lista):
     n = len(lista)
     achou = False
 
-    # Aqui entra força bruta
+    #Aqui entra força bruta
     for i in range(1, 2**n):
         subconjunto = []
         # Constrói o subconjunto com base nos bits ligados de i
@@ -14,7 +14,6 @@ def subset(lista):
         if sum(subconjunto) == 0:
             print(f"subconjunto que soma zero: {subconjunto}")
             achou = True
-
     if not achou:
         print("nenhum subconjunto soma zero.")
 
