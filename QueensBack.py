@@ -1,3 +1,6 @@
+# BackTracking
+# TempoO(n!)
+# Espaço O(n^2)
 def mostrar_tabuleiro(tabuleiro, tamanho):
     for linha in range(tamanho):
         texto = ""
@@ -10,19 +13,19 @@ def mostrar_tabuleiro(tabuleiro, tamanho):
     print("\n") 
 
 def posicao_segura(tabuleiro, linha, coluna, tamanho): # linhas diagonais direita e esquerda
-    for i in range(linha):
+    for i in range(linha):# Checa se já existe uma rainha na mesma coluna acima.
         if tabuleiro[i][coluna] == 1:
             return False 
 
     i, j = linha - 1, coluna - 1
-    while i >= 0 and j >= 0:
+    while i >= 0 and j >= 0:    #Checa a diagonal superior esquerda.
         if tabuleiro[i][j] == 1:
             return False
         i -= 1
         j -= 1
 
     i, j = linha - 1, coluna + 1
-    while i >= 0 and j < tamanho:
+    while i >= 0 and j < tamanho: #Checa a diagonal superior direita.
         if tabuleiro[i][j] == 1:
             return False
         i -= 1

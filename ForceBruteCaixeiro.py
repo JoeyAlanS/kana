@@ -1,3 +1,6 @@
+# Brute force
+# Tempo: O(n!)
+# Espaço: O(n)
 import itertools
 import math
 
@@ -7,9 +10,9 @@ def distancia(cidade1, cidade2):#Cálculo de Distância Euclidiana
 # Função que calcula a distância total de uma rota (incluindo retorno à cidade inicial)
 def total_distancia(rota):
     dist = 0
-    for i in range(len(rota) - 1):
-        dist += distancia(rota[i], rota[i + 1])
-    dist += distancia(rota[-1], rota[0]) 
+    for i in range(len(rota) - 1):#cidades que ha na rota menos a ultima  
+        dist += distancia(rota[i], rota[i + 1]) # Soma a distância até a próxima cidade
+    dist += distancia(rota[-1], rota[0])   # Soma a distância da última cidade de volta para a primeira (fechando o ciclo)
     return dist
 
 cidades = [
@@ -20,11 +23,13 @@ cidades = [
 melhor_rota = None               # Variável para armazenar a melhor rota encontrada
 melhor_distancia = float('inf')   # Inicializa a melhor distância com infinito
 
+#Ordens de visita a cidade. Cada perm representa uma rota possível
 for perm in itertools.permutations(cidades):
-    dist = total_distancia(perm)
+    dist = total_distancia(perm) # Calcula a distância total da rota
+    # Se a distância da rota atual for menor que a melhor encontrada, atualiza
     if dist < melhor_distancia:
         melhor_distancia = dist
-        melhor_rota = perm
+        melhor_rota = perm # recebe toda a rota atual
 
 print("Melhor rota encontrada:")
 for i in range(len(melhor_rota)):
