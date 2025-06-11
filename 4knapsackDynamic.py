@@ -14,7 +14,7 @@ def knapsack_dp(capacidade, itens):
             #se for menor ou igual, calcula o maximo entre o item atual + valor da mochila sem o item atual
             #se for maior, mantém o valor da mochila sem o item atual
             if itens[i-1]['peso'] <= w:
-                #No seu código, a matriz dp guarda o melhor valor possível para cada combinação de itens e capacidades, preenchendo a tabela de forma incremental. Isso torna o algoritmo muito mais eficiente do que tentar todas as combinações possíveis (força bruta).
+                #A matriz dp guarda o melhor valor possível para cada combinação de itens e capacidades, preenchendo a tabela de forma incremental. Isso torna o algoritmo muito mais eficiente do que tentar todas as combinações possíveis (força bruta).
                 dp[i][w] = max(itens[i-1]['preco'] + dp[i-1][w - itens[i-1]['peso']], dp[i-1][w])
             else:
                 dp[i][w] = dp[i-1][w]
