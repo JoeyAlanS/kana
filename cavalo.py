@@ -1,3 +1,6 @@
+# Solução do problema do Cavalo (Knight's Tour) usando backtracking
+# Tempo: O(8^(N^2)) - no pior caso, o cavalo pode visitar todas as casas do tabuleiro
+# Espaço: O(N^2) - para armazenar o tabuleiro
 import time
 # Tamanho do tabuleiro
 N = 6
@@ -7,13 +10,16 @@ dx = [2, 1, -1, -2, -2, -1, 1, 2]
 dy = [1, 2, 2, 1, -1, -2, -2, -1]
 
 def movimento_valido(x, y, tabuleiro):
-    return 0 <= x < N and 0 <= y < N and tabuleiro[x][y] == -1
+    # Verifica se a posição está dentro dos limites do tabuleiro e se ainda não foi visitada
+    return 0 <= x < N and 0 <= y < N and tabuleiro[x][y] == -1 # todas as casas começam com -1 indicando que não foram visitadas
 
 def resolver_knight_tour():
+    #Cria o tabuleiro inicial, preenchido com -1 (não visitado).
     tabuleiro = [[-1 for _ in range(N)] for _ in range(N)]
     # Começa na posição (0, 0)
     tabuleiro[0][0] = 0  
 
+#retorno quando o tabuleiro estiver completo
     if backtrack(0, 0, 1, tabuleiro):
         print("Caminho completo.")
         imprimir_tabuleiro(tabuleiro)
@@ -34,12 +40,13 @@ def backtrack(x, y, move_count, tabuleiro):
             tabuleiro[proximo_x][proximo_y] = move_count
             #mostrar_tabuleiro(tabuleiro, move_count)
             #time.sleep(0.1)  # Controle de velocidade
-
+#Essa linha faz a chamada recursiva para tentar continuar o caminho do cavalo a partir da nova posição.            
+#É o coração do algoritmo de backtracking, pois tenta todas as possibilidades a partir de cada movimento válido.
             if backtrack(proximo_x, proximo_y, move_count + 1, tabuleiro):
                 return True
             tabuleiro[proximo_x][proximo_y] = -1  # aqui ocorre o backtrack
     return False
-
+#ordem das casas do tabuleiro que foram visitadas
 def imprimir_tabuleiro(tabuleiro):
     print("\nTabuleiro final:")
     for linha in tabuleiro:

@@ -1,5 +1,10 @@
+# Backtraking
+# Tempo O(n!)
+# Espaço O(n^2)
 def solve_n_queens(n):
     def is_safe(tabuleiro, linha, col):
+#Verifica se já existe uma rainha na mesma coluna (tabuleiro[r] == col).
+#Verifica se já existe uma rainha na mesma diagonal 
         for r in range(linha):
             if tabuleiro[r] == col or abs(tabuleiro[r] - col) == abs(r - linha):
                 return False
